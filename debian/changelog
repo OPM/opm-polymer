@@ -1,0 +1,5 @@
+libopmpolymer (0.1-1) unstable; urgency=low
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Arne Morten Kvarving <arne.morten.kvarving@sintef.no>  Tue, 15 Jan 2013 16:15:03 +0100

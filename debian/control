@@ -1,0 +1,23 @@
+Source: libopmpolymer
+Priority: extra
+Maintainer: Arne Morten Kvarving <arne.morten.kvarving@sintef.no>
+Build-Depends: debhelper (>= 8.0.0), autotools-dev, gfortran, libopmcore-dev, libboost-dev, libboost-system-dev, libboost-date-time-dev, libboost-filesystem-dev, libboost-test-dev, libsuitesparse-dev
+Standards-Version: 3.9.2
+Section: libs
+Homepage: http://opm-project.org
+Vcs-Git: git://github.com/OPM/opm-polymer.git
+Vcs-Browser: https://github.com/OPM/opm-polymer
+
+Package: libopmpolymer-dev
+Section: libdevel
+Architecture: any
+Depends: libopmpolymer1 (= ${binary:Version})
+Description: OPM - polymer module -- Development files
+ The OMP polymer module bla
+
+Package: libopmpolymer1
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: OPM - polymer module
+ The OMP polymer module bla
