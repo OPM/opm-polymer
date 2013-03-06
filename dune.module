@@ -1,0 +1,4 @@
+Module: opm-polymer
+Version: 1.0
+Maintainer: atgeirr@sintef.no
+Depends: opm-core
