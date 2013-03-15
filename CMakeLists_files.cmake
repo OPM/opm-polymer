@@ -33,8 +33,8 @@ list (APPEND MAIN_SOURCE_FILES
 	opm/polymer/polymerUtilities.cpp
 	opm/polymer/SimulatorCompressiblePolymer.cpp
 	opm/polymer/SimulatorPolymer.cpp
-	opm/polymer/TransportModelCompressiblePolymer.cpp
-	opm/polymer/TransportModelPolymer.cpp
+	opm/polymer/TransportSolverTwophaseCompressiblePolymer.cpp
+	opm/polymer/TransportSolverTwophasePolymer.cpp
 	)
 
 # originally generated with the command:
@@ -71,6 +71,6 @@ list (APPEND PUBLIC_HEADER_FILES
 	opm/polymer/SimulatorCompressiblePolymer.hpp
 	opm/polymer/SimulatorPolymer.hpp
 	opm/polymer/SinglePointUpwindTwoPhasePolymer.hpp
-	opm/polymer/TransportModelCompressiblePolymer.hpp
-	opm/polymer/TransportModelPolymer.hpp
+	opm/polymer/TransportSolverTwophaseCompressiblePolymer.hpp
+	opm/polymer/TransportSolverTwophasePolymer.hpp
 	)
