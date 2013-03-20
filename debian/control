@@ -1,0 +1,51 @@
+Source: libopm-polymer
+Priority: extra
+Maintainer: Arne Morten Kvarving <arne.morten.kvarving@sintef.no>
+Build-Depends: build-essential, debhelper (>= 9),
+               libopm-core-dev,cmake, libtinyxml-dev, bc,
+               git, zlib1g-dev, libtool, libert.ecl-dev, libsuperlu3-dev,
+               libboost-filesystem-dev, libboost-system-dev, pkg-config,
+               libboost-date-time-dev, libboost-test-dev, libsuitesparse-dev,
+Build-Depends-Indep: doxygen, texlive-latex-extra, texlive-latex-recommended, ghostscript
+Standards-Version: 3.9.2
+Section: libs
+Homepage: http://opm-project.org
+Vcs-Git: git://github.com/OPM/opm-polymer.git
+Vcs-Browser: https://github.com/OPM/opm-polymer
+
+Package: libopm-polymer1-dev
+Section: libdevel
+Architecture: all
+Multi-Arch: foreign
+Depends: libopm-polymer1 (= ${binary:Version})
+Provides: libopm-polymer-dev
+Suggests: libopm-polymer-doc
+Description: OPM polymer library -- development files
+ This module is the polymer part of OPM.
+
+Package: libopm-polymer1
+Section: libs
+Pre-Depends: ${misc:Pre-Depends}, multiarch-support
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Provides: libopm-polymer
+Description: OPM polymer library
+ This module is the polymer part of OPM.
+
+Package: libopm-polymer1-doc
+Section: doc
+Architecture: all
+Multi-Arch: foreign
+Provides: libopm-polymer-doc
+Description: OPM polymer library -- documentation
+ This module is the polymer part of OPM.
+
+Package: libopm-polymer1-dbg
+Section: debug
+Architecture: any
+Multi-Arch: foreign
+Provides: libopm-polymer-dbg
+Depends: libopm-polymer1 (= ${binary:Version}), ${misc:Depends}
+Description: OPM polymer library -- debug symbols
+ This module is the polymer part of OPM.
