@@ -55,6 +55,13 @@ list (APPEND EXAMPLE_SOURCE_FILES
 	examples/test_singlecellsolves.cpp
 	)
 
+# programs listed here will not only be compiled, but also marked for
+# installation
+list (APPEND PROGRAM_SOURCE_FILES
+	examples/sim_poly2p_comp_reorder.cpp
+	examples/sim_poly2p_incomp_reorder.cpp
+	)
+
 # originally generated with the command:
 # find opm -name '*.h*' -a ! -name '*-pch.hpp' -printf '\t%p\n' | sort
 list (APPEND PUBLIC_HEADER_FILES
