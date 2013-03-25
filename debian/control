@@ -33,6 +33,16 @@ Provides: libopm-polymer
 Description: OPM polymer library
  This module is the polymer part of OPM.
 
+Package: libopm-polymer1-bin
+Section: libs
+Pre-Depends: ${misc:Pre-Depends}, multiarch-support
+Architecture: any
+Multi-Arch: same
+Depends: libopm-polymer1
+Provides: libopm-polymer-bin
+Description: OPM polymer library -- applications
+ This module is the polymer part of OPM.
+
 Package: libopm-polymer1-doc
 Section: doc
 Architecture: all
