@@ -41,7 +41,6 @@ Requires:       blas-devel
 Requires:       lapack-devel
 Requires:       suitesparse-devel
 Requires:       libopm-polymer1 = %{version}
-BuildArch:	noarch
 
 %description devel
 This module is the polymer part of OPM.
