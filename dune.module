@@ -1,4 +1,5 @@
 Module: opm-polymer
+Description: OPM module for polymer simulations
 Version: 1.0
 Maintainer: atgeirr@sintef.no
 Depends: opm-core
