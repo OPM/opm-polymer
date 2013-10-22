@@ -3,7 +3,7 @@
 #
 
 Name:           opm-polymer
-Version:        2013.03
+Version:        2013.10
 Release:        0
 Summary:        Open Porous Media - polymer library
 License:        GPL-3.0
