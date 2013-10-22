@@ -1,3 +1,9 @@
+opm-polymer (2013.10-2~precise) precise; urgency=low
+
+  * New release
+
+ -- Arne Morten Kvarving <arne.morten.kvarving@sintef.no>  Mon, 14 Oct 2013 15:23:42 +0200
+
 opm-polymer (2013.03-3) precise; urgency=low
 
   * Fix dependencies of -bin package
