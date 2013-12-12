@@ -5,38 +5,31 @@
 #	                             depending on the platform; use this path
 #	                             for platform-specific binaries.
 #
-#	CMAKE_INSTALL_LIBDIR_NOARCH  to lib or lib64 depending on the platform;
-#	                             use this path for architecture-independent
-#	                             files.
-#
 # Note that it will override the results of GNUInstallDirs if included after
 # that module.
 
-# Fedora uses lib64/ for 64-bit systems, Debian uses lib/x86_64-linux-gnu;
-# Fedora put module files in lib64/ too, but Debian uses lib/ for that
+# default if we need to put something in the library directory for a
+# component that is *not* multiarch-aware
+set (LIBDIR_MULTIARCH_UNAWARE "lib")
+
+# Fedora uses lib64/ for 64-bit systems, Debian uses lib/x86_64-linux-gnu
 if ("${CMAKE_SYSTEM_NAME}" MATCHES "Linux")
   # Debian or Ubuntu?
   if (EXISTS "/etc/debian_version")
 	set (_libdir_def "lib/${CMAKE_LIBRARY_ARCHITECTURE}")
-	set (_libdir_noarch "lib")
   else (EXISTS "/etc/debian_version")
 	# 64-bit system?
 	if (CMAKE_SIZEOF_VOID_P EQUAL 8)
-	  set (_libdir_noarch "lib64")
+	  set (_libdir_def "lib64")
+	  set (LIBDIR_MULTIARCH_UNAWARE "${_libdir_def}")
 	else (CMAKE_SIZEOF_VOID_P EQUAL 8)
-	  set (_libdir_noarch "lib")
+	  set (_libdir_def "lib")
 	endif (CMAKE_SIZEOF_VOID_P EQUAL 8)
-	set (_libdir_def "${_libdir_noarch}")
   endif (EXISTS "/etc/debian_version")
 else ("${CMAKE_SYSTEM_NAME}" MATCHES "Linux")
   set (_libdir_def "lib")
-  set (_libdir_noarch "lib")
 endif ("${CMAKE_SYSTEM_NAME}" MATCHES "Linux")
 
 # let the user override if somewhere else is desirable
 set (CMAKE_INSTALL_LIBDIR "${_libdir_def}" CACHE PATH "Object code libraries")
-set (CMAKE_INSTALL_LIBDIR_NOARCH "${_libdir_noarch}" CACHE PATH "Architecture-independent library files")
-mark_as_advanced (
-  CMAKE_INSTALL_LIBDIR
-  CMAKE_INSTALL_LIBDIR_NOARCH
-  )
+mark_as_advanced (CMAKE_INSTALL_LIBDIR)

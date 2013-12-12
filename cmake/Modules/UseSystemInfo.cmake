@@ -5,6 +5,9 @@ function (system_info)
   if (CMAKE_SYSTEM MATCHES "Linux")
 	distro_name (DISTRO_NAME)
 	message (STATUS "Linux distribution: ${DISTRO_NAME}")
+  elseif (CMAKE_SYSTEM MATCHES "Darwin")
+	sw_vers (OS_VERSION)
+	message (STATUS "${OS_VERSION}")
   else (CMAKE_SYSTEM MATCHES "Linux")
 	message (STATUS "Operating system: ${CMAKE_SYSTEM}")
   endif (CMAKE_SYSTEM MATCHES "Linux")
@@ -13,11 +16,30 @@ function (system_info)
   message (STATUS "Target architecture: ${TARGET_CPU}")
 endfunction (system_info)
 
+function (sw_vers varname)
+  # query operating system for information
+  exec_program (sw_vers OUTPUT_VARIABLE _vers)
+  # split multi-line into various fields
+  string (REPLACE "\n" ";" _vers "${_vers}")
+  string (REPLACE ":" ";" _vers "${_vers}")
+  # get the various fields
+  list (GET _vers 1 _prod_name)
+  list (GET _vers 3 _prod_vers)
+  list (GET _vers 5 _prod_build)
+  # remove extraneous whitespace
+  string (STRIP "${_prod_name}" _prod_name)
+  string (STRIP "${_prod_vers}" _prod_vers)
+  string (STRIP "${_prod_build}" _prod_build)
+  # assemble result variable
+  set (${varname} "${_prod_name} version: ${_prod_vers} (${_prod_build})" PARENT_SCOPE)
+endfunction (sw_vers varname)
+
 # probe various system files that may be found
 function (distro_name varname)
   file (GLOB has_os_release /etc/os-release)
   file (GLOB has_lsb_release /etc/lsb-release)
   file (GLOB has_sys_release /etc/system-release)
+  file (GLOB has_redhat_release /etc/redhat-release)
   set (_descr)
   # start with /etc/os-release,
   # see <http://0pointer.de/blog/projects/os-release.html>
@@ -31,6 +53,8 @@ function (distro_name varname)
   if (NOT _descr)
 	if (NOT has_sys_release STREQUAL "")
 	  file (READ /etc/system-release _descr)
+	elseif (NOT has_redhat_release STREQUAL "")
+	  file (READ /etc/redhat-release _descr)
 	else (NOT has_sys_release STREQUAL "")
 	  # no yet known release file found
 	  set (_descr "unknown")
