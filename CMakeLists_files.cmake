@@ -39,10 +39,11 @@ list (APPEND MAIN_SOURCE_FILES
     opm/polymer/fullyimplicit/IncompPropsAdBasic.cpp
     opm/polymer/fullyimplicit/IncompPropsAdInterface.cpp
     opm/polymer/fullyimplicit/IncompPropsAdFromDeck.cpp
-    opm/polymer/fullyimplicit/SimulatorFullyImplicitTwophase.cpp
-    opm/polymer/fullyimplicit/FullyImplicitTwoPhaseSolver.cpp
+ #   opm/polymer/fullyimplicit/SimulatorFullyImplicitTwophase.cpp
+#    opm/polymer/fullyimplicit/FullyImplicitTwoPhaseSolver.cpp
     opm/polymer/fullyimplicit/PolymerPropsAd.cpp
     opm/polymer/fullyimplicit/FullyImplicitTwophasePolymerSolver.cpp
+    opm/polymer/fullyimplicit/SimulatorFullyImplicitTwophasePolymer.cpp
 	)
 
 # originally generated with the command:
@@ -61,8 +62,10 @@ list (APPEND EXAMPLE_SOURCE_FILES
 	examples/sim_poly2p_comp_reorder.cpp
 	examples/sim_poly2p_incomp_reorder.cpp
 	examples/test_singlecellsolves.cpp
-    examples/sim_2p_fincomp_ad.cpp
+#    examples/sim_2p_fincomp_ad.cpp
     examples/sim_poly2p_fincomp_ad.cpp
+    examples/sim_poly_fi2p_incomp_ad.cpp
+ #   examples/sim_fi2p_incomp_ad.cpp
 	)
 
 # programs listed here will not only be compiled, but also marked for
@@ -98,7 +101,8 @@ list (APPEND PUBLIC_HEADER_FILES
     opm/polymer/fullyimplcit/IncompPropsAdBasic.hpp
     opm/polymer/fullyimplicit/FullyImplicitTwoPhaseSolver.hpp
     opm/polymer/fullyimplicit/IncompPropsAdFromDeck.hpp
-    opm/polymer/fullyimplicit/SimulatorFullyImplicitTwophase.hpp
+    #opm/polymer/fullyimplicit/SimulatorFullyImplicitTwophase.hpp
+    opm/polymer/fullyimplicit/SimulatorFullyImplicitTwophasePolymer.hpp
     opm/polymer/fullyimplicit/PolymerPropsAd.hpp
-    opm/polymer/fullyimplicit/FullyImplicitTwophasePolymerSolver.hpp
+   # opm/polymer/fullyimplicit/FullyImplicitTwophasePolymerSolver.hpp
 	)
