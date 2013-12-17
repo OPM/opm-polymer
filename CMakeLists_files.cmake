@@ -39,7 +39,7 @@ list (APPEND MAIN_SOURCE_FILES
     opm/polymer/fullyimplicit/IncompPropsAdBasic.cpp
     opm/polymer/fullyimplicit/IncompPropsAdInterface.cpp
     opm/polymer/fullyimplicit/IncompPropsAdFromDeck.cpp
-    opm/polymer/fullyimplicit/SimulatorFullyImplicitTwophase.cpp
+#    opm/polymer/fullyimplicit/SimulatorFullyImplicitTwophase.cpp
     opm/polymer/fullyimplicit/FullyImplicitTwoPhaseSolver.cpp
     opm/polymer/fullyimplicit/PolymerPropsAd.cpp
     opm/polymer/fullyimplicit/FullyImplicitTwophasePolymerSolver.cpp
@@ -98,7 +98,7 @@ list (APPEND PUBLIC_HEADER_FILES
     opm/polymer/fullyimplcit/IncompPropsAdBasic.hpp
     opm/polymer/fullyimplicit/FullyImplicitTwoPhaseSolver.hpp
     opm/polymer/fullyimplicit/IncompPropsAdFromDeck.hpp
-    opm/polymer/fullyimplicit/SimulatorFullyImplicitTwophase.hpp
+#    opm/polymer/fullyimplicit/SimulatorFullyImplicitTwophase.hpp
     opm/polymer/fullyimplicit/PolymerPropsAd.hpp
     opm/polymer/fullyimplicit/FullyImplicitTwophasePolymerSolver.hpp
 	)
