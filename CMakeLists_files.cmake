@@ -63,7 +63,7 @@ list (APPEND EXAMPLE_SOURCE_FILES
 	examples/sim_poly2p_incomp_reorder.cpp
 	examples/test_singlecellsolves.cpp
 #    examples/sim_2p_fincomp_ad.cpp
-    examples/sim_poly2p_fincomp_ad.cpp
+#    examples/sim_poly2p_fincomp_ad.cpp
     examples/sim_poly_fi2p_incomp_ad.cpp
  #   examples/sim_fi2p_incomp_ad.cpp
 	)
