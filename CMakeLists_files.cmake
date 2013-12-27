@@ -39,11 +39,15 @@ list (APPEND MAIN_SOURCE_FILES
     opm/polymer/fullyimplicit/IncompPropsAdBasic.cpp
     opm/polymer/fullyimplicit/IncompPropsAdInterface.cpp
     opm/polymer/fullyimplicit/IncompPropsAdFromDeck.cpp
- #   opm/polymer/fullyimplicit/SimulatorFullyImplicitTwophase.cpp
-#    opm/polymer/fullyimplicit/FullyImplicitTwoPhaseSolver.cpp
     opm/polymer/fullyimplicit/PolymerPropsAd.cpp
     opm/polymer/fullyimplicit/FullyImplicitTwophasePolymerSolver.cpp
     opm/polymer/fullyimplicit/SimulatorFullyImplicitTwophasePolymer.cpp
+
+    opm/polymer/fullyimplicit/BlackoilPropsAdInterface.cpp
+    opm/polymer/fullyimplicit/BlackoilPropsAd.cpp
+    opm/polymer/fullyimplicit/BlackoilPropsAdFromDeck.cpp
+    opm/polymer/fullyimplicit/FullyImplicitCompressiblePolymerSolver.cpp
+    opm/polymer/fullyimplicit/SimulatorFullyImplicitCompressiblePolymer.cpp
 	)
 
 # originally generated with the command:
@@ -65,6 +69,7 @@ list (APPEND EXAMPLE_SOURCE_FILES
 #    examples/sim_2p_fincomp_ad.cpp
 #    examples/sim_poly2p_fincomp_ad.cpp
     examples/sim_poly_fi2p_incomp_ad.cpp
+    examples/sim_poly_fi2p_comp_ad.cpp
  #   examples/sim_fi2p_incomp_ad.cpp
 	)
 
@@ -99,10 +104,15 @@ list (APPEND PUBLIC_HEADER_FILES
     opm/polymer/fullyimplicit/AutoDiffHelpers.hpp
     opm/polymer/fullyimplcit/IncompPropsAdInterface.hpp
     opm/polymer/fullyimplcit/IncompPropsAdBasic.hpp
-    opm/polymer/fullyimplicit/FullyImplicitTwoPhaseSolver.hpp
     opm/polymer/fullyimplicit/IncompPropsAdFromDeck.hpp
-    #opm/polymer/fullyimplicit/SimulatorFullyImplicitTwophase.hpp
+    opm/polymer/fullyimplicit/FullyImplicitTwophasePolymerSolver.hpp
     opm/polymer/fullyimplicit/SimulatorFullyImplicitTwophasePolymer.hpp
     opm/polymer/fullyimplicit/PolymerPropsAd.hpp
-   # opm/polymer/fullyimplicit/FullyImplicitTwophasePolymerSolver.hpp
+
+    opm/polymer/fullyimplicit/BlackoilPropsAdInterface.hpp
+    opm/polymer/fullyimplicit/BlackoilPropsAd.hpp
+    opm/polymer/fullyimplicit/BlackoilPropsAdFromDeck.hpp
+    opm/polymer/fullyimplicit/GeoProps.hpp
+    opm/polymer/fullyimplicit/FullyImplicitCompressiblePolymerSolver.hpp
+    opm/polymer/fullyimplicit/SimulatorFullyImplicitCompressiblePolymer.hpp
 	)
