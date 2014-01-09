@@ -78,6 +78,8 @@ list (APPEND EXAMPLE_SOURCE_FILES
 list (APPEND PROGRAM_SOURCE_FILES
 	examples/sim_poly2p_comp_reorder.cpp
 	examples/sim_poly2p_incomp_reorder.cpp
+    examples/sim_poly_fi2p_incomp_ad.cpp
+    examples/sim_poly_fi2p_comp_ad.cpp
 	)
 
 # originally generated with the command:
@@ -102,8 +104,8 @@ list (APPEND PUBLIC_HEADER_FILES
     opm/polymer/fullyimplicit/AutoDiffBlock.hpp
     opm/polymer/fullyimplicit/AutoDiff.hpp
     opm/polymer/fullyimplicit/AutoDiffHelpers.hpp
-    opm/polymer/fullyimplcit/IncompPropsAdInterface.hpp
-    opm/polymer/fullyimplcit/IncompPropsAdBasic.hpp
+    opm/polymer/fullyimplicit/IncompPropsAdInterface.hpp
+    opm/polymer/fullyimplicit/IncompPropsAdBasic.hpp
     opm/polymer/fullyimplicit/IncompPropsAdFromDeck.hpp
     opm/polymer/fullyimplicit/FullyImplicitTwophasePolymerSolver.hpp
     opm/polymer/fullyimplicit/SimulatorFullyImplicitTwophasePolymer.hpp
