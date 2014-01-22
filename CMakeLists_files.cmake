@@ -48,6 +48,7 @@ list (APPEND MAIN_SOURCE_FILES
     opm/polymer/fullyimplicit/BlackoilPropsAdFromDeck.cpp
     opm/polymer/fullyimplicit/FullyImplicitCompressiblePolymerSolver.cpp
     opm/polymer/fullyimplicit/SimulatorFullyImplicitCompressiblePolymer.cpp
+		opm/polymer/fullyimplicit/utilities.cpp
 	)
 
 # originally generated with the command:
@@ -117,4 +118,5 @@ list (APPEND PUBLIC_HEADER_FILES
     opm/polymer/fullyimplicit/GeoProps.hpp
     opm/polymer/fullyimplicit/FullyImplicitCompressiblePolymerSolver.hpp
     opm/polymer/fullyimplicit/SimulatorFullyImplicitCompressiblePolymer.hpp
+		opm/polymer/fullyimplicit/utilities.hpp
 	)
