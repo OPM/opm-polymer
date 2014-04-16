@@ -32,11 +32,13 @@ namespace Opm
     class PolymerState
     {
     public:
-        void init(const UnstructuredGrid& g, int num_phases)
+        void init(int number_of_cells,
+                  int number_of_faces,
+                  int num_phases)
         {
-            state2p_.init(g, num_phases);
-            concentration_.resize(g.number_of_cells, 0.0);
-            cmax_.resize(g.number_of_cells, 0.0);
+            state2p_.init(number_of_cells, number_of_faces, num_phases);
+            concentration_.resize(number_of_cells, 0.0);
+            cmax_.resize(number_of_cells, 0.0);
         }
 
         enum ExtremalSat { MinSat = TwophaseState::MinSat, MaxSat = TwophaseState::MaxSat };
