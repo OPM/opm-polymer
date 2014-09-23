@@ -2,23 +2,17 @@
 # vim: set filetype=cmake autoindent tabstop=2 shiftwidth=2 noexpandtab softtabstop=2 nowrap:
 
 # defines that must be present in config.h for our headers
-set (opm-porsol_CONFIG_VAR
+set (opm-benchmarks_CONFIG_VAR
 	)
 
 # dependencies
-set (opm-porsol_DEPS
-	# compile with C99 support if available
-	"C99"
+set (opm-benchmarks_DEPS
 	# compile with C++0x/11 support if available
-	"CXX11Features"
+	"CXX11Features REQUIRED"
 	# various runtime library enhancements
 	"Boost 1.44.0
 		COMPONENTS date_time filesystem system iostreams unit_test_framework REQUIRED"
-	# DUNE dependency
-	"dune-common REQUIRED;
-	dune-istl REQUIRED;
-	dune-grid REQUIRED;
-	opm-core REQUIRED;
-	opm-material REQUIRED;
-	dune-cornerpoint REQUIRED"
+	# OPM dependency
+	"opm-core"
+	"opm-upscaling"
 	)

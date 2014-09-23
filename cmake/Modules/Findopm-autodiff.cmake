@@ -1,4 +1,4 @@
-# - Find OPM autodiff grid library
+# - Find OPM automatic differentiation library
 #
 # Defines the following variables:
 #   opm-autodiff_INCLUDE_DIRS    Directory of header files
@@ -7,9 +7,10 @@
 #   opm-autodiff_CONFIG_VARS     List of defines that should be in config.h
 #   HAVE_OPM_AUTODIFF            Binary value to use in config.h
 
-# Copyright (C) 2013 Uni Research AS
+# Copyright (C) 2012 Uni Research AS
 # This code is licensed under The GNU General Public License v3.0
 
+# use the generic find routine
 include (opm-autodiff-prereqs)
 include (OpmPackage)
 find_opm_package (
@@ -18,9 +19,9 @@ find_opm_package (
 
   # dependencies
   "${opm-autodiff_DEPS}"
-
+  
   # header to search for
-  "opm/autodiff/SinglePhaseUpscaler.hpp"
+  "opm/autodiff/AutoDiff.hpp"
 
   # library to search for
   "opmautodiff"
@@ -29,13 +30,15 @@ find_opm_package (
   ""
 
   # test program
-"#include <opm/autodiff/AutoDiffBlock.hpp>
+"#include <opm/autodiff/AutoDiff.hpp>
 int main (void) {
-  return 0;
+  Opm::AutoDiff<double> x = Opm::AutoDiff<double>::constant(42.);
+  (void) x;
+  return 0;  
 }
 "
   # config variables
   "${opm-autodiff_CONFIG_VAR}"
   )
-
+include (UseDynamicBoost)
 #debug_find_vars ("opm-autodiff")

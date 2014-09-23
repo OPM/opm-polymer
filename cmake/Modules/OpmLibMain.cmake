@@ -13,6 +13,7 @@
 # fortran_hook    Determine whether Fortran support is necessary or not
 #	sources_hook    Do special processing before sources are compiled
 #	tests_hook      Do special processing before tests are compiled
+#	files_hook      Do special processing before final targets are added
 
 # include special
 if (CMAKE_VERSION VERSION_LESS "2.8.3")
@@ -89,6 +90,9 @@ endif (COMMAND prereqs_hook)
 include (OpmFind)
 find_and_append_package_list_to (${project} ${${project}_DEPS})
 
+# set aliases to probed variables
+include (OpmAliases)
+
 # remove the dependency on the testing framework from the main library;
 # it is not possible to query for Boost twice with different components.
 list (REMOVE_ITEM "${project}_LIBRARIES" "${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}")
@@ -104,6 +108,9 @@ include (UseDynamicBoost)
 
 # needed for Debian installation scheme
 include (UseMultiArch)
+
+# Run conditional file hook
+files_hook()
 
 # this module contains code to figure out which files is where
 include (OpmFiles)
