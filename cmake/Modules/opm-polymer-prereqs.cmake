@@ -17,6 +17,7 @@ set (opm-polymer_DEPS
 	# Ensembles-based Reservoir Tools
 	"ERT"
 	# OPM dependency
+	"opm-autodiff REQUIRED"
 	"opm-core REQUIRED"
 	# Eigen
 	"Eigen3 3.1 REQUIRED"
