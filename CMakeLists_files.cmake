@@ -45,6 +45,7 @@ list (APPEND MAIN_SOURCE_FILES
 
     opm/polymer/fullyimplicit/FullyImplicitCompressiblePolymerSolver.cpp
     opm/polymer/fullyimplicit/SimulatorFullyImplicitCompressiblePolymer.cpp
+    opm/polymer/fullyimplicit/SimulatorFullyImplicitBlackoilPolymerOutput.cpp
 		opm/polymer/fullyimplicit/utilities.cpp
 	)
 
@@ -68,6 +69,7 @@ list (APPEND EXAMPLE_SOURCE_FILES
 #    examples/sim_poly2p_fincomp_ad.cpp
 #    examples/sim_poly_fi2p_incomp_ad.cpp
     examples/sim_poly_fi2p_comp_ad.cpp
+		examples/sim_poly_fibo_ad.cpp
  #   examples/sim_fi2p_incomp_ad.cpp
 	)
 
@@ -78,6 +80,7 @@ list (APPEND PROGRAM_SOURCE_FILES
 	examples/sim_poly2p_incomp_reorder.cpp
     examples/sim_poly_fi2p_incomp_ad.cpp
     examples/sim_poly_fi2p_comp_ad.cpp
+		examples/sim_poly_fibo_ad.cpp
 	)
 
 # originally generated with the command:
@@ -108,5 +111,10 @@ list (APPEND PUBLIC_HEADER_FILES
 
     opm/polymer/fullyimplicit/FullyImplicitCompressiblePolymerSolver.hpp
     opm/polymer/fullyimplicit/SimulatorFullyImplicitCompressiblePolymer.hpp
+    opm/polymer/fullyimplicit/FullyImplicitBlackoilPolymerSolver.hpp
+    opm/polymer/fullyimplicit/FullyImplicitBlackoilPolymerSolver_impl.hpp
+    opm/polymer/fullyimplicit/SimulatorFullyImplicitBlackoilPolymer.hpp
+    opm/polymer/fullyimplicit/SimulatorFullyImplicitBlackoilPolymer_impl.hpp
+    opm/polymer/fullyimplicit/SimulatorFullyImplicitBlackoilPolymerOutput.hpp
 		opm/polymer/fullyimplicit/utilities.hpp
 	)
