@@ -276,7 +276,8 @@ try
         // With a deck, we may have more epochs etc.
         WellState well_state;
         int step = 0;
-        Opm::TimeMapPtr timeMap(new Opm::TimeMap(deck));
+        Opm::ParserLogPtr parserLog(new Opm::ParserLog);
+        Opm::TimeMapPtr timeMap(new Opm::TimeMap(deck, parserLog));
         SimulatorTimer simtimer;
         simtimer.init(timeMap);
         // Check for WPOLYMER presence in last report step to decide
