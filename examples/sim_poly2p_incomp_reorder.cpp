@@ -281,7 +281,7 @@ try
 
         WellState well_state;
         int step = 0;
-        Opm::TimeMapPtr timeMap(new Opm::TimeMap(deck));
+        Opm::TimeMapConstPtr timeMap(eclipseState->getSchedule()->getTimeMap());
         SimulatorTimer simtimer;
         simtimer.init(timeMap);
         // Check for WPOLYMER presence in last epoch to decide
