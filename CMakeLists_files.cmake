@@ -39,7 +39,6 @@ list (APPEND MAIN_SOURCE_FILES
   opm/polymer/fullyimplicit/FullyImplicitCompressiblePolymerSolver.cpp
   opm/polymer/fullyimplicit/SimulatorFullyImplicitCompressiblePolymer.cpp
   opm/polymer/fullyimplicit/SimulatorFullyImplicitBlackoilPolymerOutput.cpp
-  opm/polymer/fullyimplicit/utilities.cpp
 	)
 
 # originally generated with the command:
@@ -97,5 +96,4 @@ list (APPEND PUBLIC_HEADER_FILES
   opm/polymer/fullyimplicit/SimulatorFullyImplicitBlackoilPolymer.hpp
   opm/polymer/fullyimplicit/SimulatorFullyImplicitBlackoilPolymer_impl.hpp
   opm/polymer/fullyimplicit/SimulatorFullyImplicitBlackoilPolymerOutput.hpp
-	opm/polymer/fullyimplicit/utilities.hpp
 	)
