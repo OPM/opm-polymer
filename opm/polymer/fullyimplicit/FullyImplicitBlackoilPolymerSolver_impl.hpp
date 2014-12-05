@@ -277,12 +277,9 @@ namespace {
 
         if (active_[Gas]) { updatePrimalVariableFromState(x); }
 
-        {
-            const SolutionState state = constantState(x, xw);
-		    computeCmax(x, state.concentration);
-            computeAccum(state, 0);
-            computeWellConnectionPressures(state, xw);
-        }
+        const SolutionState state = constantState(x, xw);
+        computeAccum(state, 0);
+        computeWellConnectionPressures(state, xw);
 
         std::vector<std::vector<double>> residual_history;
 
@@ -342,6 +339,8 @@ namespace {
             std::cerr << "Failed to compute converged solution in " << it << " iterations. Ignoring!\n";
             // OPM_THROW(std::runtime_error, "Failed to compute converged solution in " << it << " iterations.");
         }
+        
+        computeCmax(x, state.concentration);
     }
 
 
