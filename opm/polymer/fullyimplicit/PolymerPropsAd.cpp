@@ -233,9 +233,8 @@ namespace Opm {
         double res_factor = polymer_props_.resFactor();
         double factor = (res_factor -1.) / max_ads;
         V rk = one + factor * ads;
-        V krw_eff = krw / rk;
 
-        return krw_eff;
+        return krw / rk;
     }
 
 
@@ -251,23 +250,13 @@ namespace Opm {
         const int nc = c.value().size();
         V one = V::Ones(nc);
         ADB ads = adsorption(c, cmax_cells);
-        V krw_eff = effectiveRelPerm(c.value(), cmax_cells.value(), krw.value());
 
         double max_ads = polymer_props_.cMaxAds();
         double res_factor = polymer_props_.resFactor();
         double factor = (res_factor - 1.) / max_ads;
-        ADB rk = one + ads * factor; 
-		ADB dkrw_ds = krw / rk;
-        ADB dkrw_dc = -factor * krw / (rk * rk) * ads ;
-
-        const int num_blocks = c.numBlocks();
-        std::vector<ADB::M> jacs(num_blocks);
-        for (int block = 0; block < num_blocks; ++block) {
-            jacs[block] = dkrw_ds.derivative()[block] * sw.derivative()[block] 
-						+ dkrw_dc.derivative()[block] * c.derivative()[block];
-        }
-
-        return ADB::function(krw_eff, jacs);
+        ADB rk = one + ads * factor;
+        
+        return krw / rk;
     }
 
 }// namespace Opm
