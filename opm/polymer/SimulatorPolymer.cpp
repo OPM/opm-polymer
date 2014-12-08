@@ -618,7 +618,7 @@ namespace Opm
             dm["velocity"] = &cell_velocity;
 
             writeECLData(grid, dm, simtimer.currentStepNum(), simtimer.simulationTimeElapsed(), simtimer.currentDateTime(),
-                         output_dir, "polymer_ecl");
+                         0,0,0,0,0,output_dir, "polymer_ecl");
 #else
         OPM_THROW(std::runtime_error, "Cannot call outputStateBinary() without ert library support. Reconfigure with --with-ert and recompile.");
 #endif
