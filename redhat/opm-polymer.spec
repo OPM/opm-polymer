@@ -2,10 +2,10 @@
 # spec file for package opm-polymer
 #
 
-%define tag rc3
+%define tag final
 
 Name:           opm-polymer
-Version:        2013.10
+Version:        2015.04
 Release:        0
 Summary:        Open Porous Media - polymer library
 License:        GPL-3.0
