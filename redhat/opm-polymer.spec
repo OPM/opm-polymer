@@ -12,13 +12,12 @@ License:        GPL-3.0
 Group:          Development/Libraries/C and C++
 Url:            http://www.opm-project.org/
 Source0:        https://github.com/OPM/%{name}/archive/release/%{version}/%{tag}.tar.gz#/%{name}-%{version}.tar.gz
-BuildRequires:  blas-devel lapack-devel dune-common-devel
+BuildRequires:  blas-devel lapack-devel dune-common-devel boost148-devel
 BuildRequires:  git suitesparse-devel cmake28 doxygen bc ert.ecl-devel
-BuildRequires:  tinyxml-devel dune-istl-devel superlu-devel opm-core-devel
+BuildRequires:  tinyxml-devel dune-istl-devel superlu-devel eigen3-devel
+BuildRequires:  opm-core-devel opm-parser-devel opm-autodiff-devel
 %{?el5:BuildRequires: gcc44 gcc44-gfortran gcc44-c++}
 %{!?el5:BuildRequires: gcc gcc-gfortran gcc-c++}
-%{?el5:BuildRequires: boost141-devel}
-%{!?el5:BuildRequires: boost-devel}
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 Requires:       libopm-polymer1 = %{version}
 
@@ -61,23 +60,12 @@ BuildArch:	noarch
 %description doc
 This package contains the documentation files for opm-polymer
 
-%{?el5:
-%package debuginfo
-Summary:        Debug info in opm-polymer
-Group:          Scientific
-Requires:       libopm-polymer1 = %{version}, opm-polymer-bin = %{version}
-BuildArch: 	%{_arch}
-
-%description debuginfo
-This package contains the debug symbols for opm-polymer
-}
-
 %prep
 %setup -q -n %{name}-release-%{version}-%{tag}
 
 # consider using -DUSE_VERSIONED_DIR=ON if backporting
 %build
-cmake28 -DBUILD_SHARED_LIBS=1 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%{_prefix} -DCMAKE_INSTALL_DOCDIR=share/doc/%{name}-%{version} -DUSE_RUNPATH=OFF %{?el5:-DCMAKE_CXX_COMPILER=g++44 -DCMAKE_C_COMPILER=gcc44 -DBOOST_LIBRARYDIR=%{_libdir}/boost141 -DBOOST_INCLUDEDIR=/usr/include/boost141}
+cmake28 -DBUILD_SHARED_LIBS=1 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%{_prefix} -DCMAKE_INSTALL_DOCDIR=share/doc/%{name}-%{version} -DUSE_RUNPATH=OFF %{?el5:-DCMAKE_CXX_COMPILER=g++44 -DCMAKE_C_COMPILER=gcc44} -DBOOST_LIBRARYDIR=%{_libdir}/boost148 -DBOOST_INCLUDEDIR=/usr/include/boost148
 make
 
 %install
@@ -108,8 +96,3 @@ rm -rf %{buildroot}
 
 %files bin
 %{_bindir}/*
-
-%{?el5:
-%files debuginfo
-/usr/lib/debug/%{_libdir}/*.so.*.debug
-}
