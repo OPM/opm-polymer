@@ -92,6 +92,8 @@ list (APPEND PUBLIC_HEADER_FILES
     opm/polymer/fullyimplicit/SimulatorFullyImplicitCompressiblePolymer.hpp
     opm/polymer/fullyimplicit/FullyImplicitBlackoilPolymerSolver.hpp
     opm/polymer/fullyimplicit/FullyImplicitBlackoilPolymerSolver_impl.hpp
+    opm/polymer/fullyimplicit/BlackoilPolymerModel.hpp
+    opm/polymer/fullyimplicit/BlackoilPolymerModel_impl.hpp
     opm/polymer/fullyimplicit/SimulatorFullyImplicitBlackoilPolymer.hpp
     opm/polymer/fullyimplicit/SimulatorFullyImplicitBlackoilPolymer_impl.hpp
 	)
