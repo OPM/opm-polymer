@@ -83,8 +83,6 @@ namespace Opm
                                       const Opm::PolymerBlackoilState& state,
                                       const int step,
                                       const std::string& output_dir);
-        static  void outputWaterCut(const Opm::Watercut& watercut,
-                	            const std::string& output_dir);
     } // anonymous namespace
 
     class SimulatorFullyImplicitCompressiblePolymer::Impl
@@ -99,8 +97,7 @@ namespace Opm
              std::shared_ptr<EclipseState> eclipse_state,
              EclipseWriter& output_writer,
              Opm::DeckConstPtr& deck,
-             NewtonIterationBlackoilInterface& linsolver,
-             const double* gravity);
+             NewtonIterationBlackoilInterface& linsolver);
 
         SimulatorReport run(SimulatorTimer& timer,
                             PolymerBlackoilState& state);
@@ -125,7 +122,6 @@ namespace Opm
         EclipseWriter& output_writer_;
         Opm::DeckConstPtr& deck_;
         NewtonIterationBlackoilInterface& linsolver_;
-        const double* gravity_;
         // Solvers
         DerivedGeology geo_;
         // Misc. data
@@ -145,11 +141,10 @@ namespace Opm
                                               std::shared_ptr<EclipseState> eclipse_state,
                                               EclipseWriter& output_writer,
                                               Opm::DeckConstPtr& deck,
-                                              NewtonIterationBlackoilInterface& linsolver,
-                                              const double* gravity)
+                                              NewtonIterationBlackoilInterface& linsolver)
 
     {
-        pimpl_.reset(new Impl(param, grid, geo, props, polymer_props, rock_comp_props, eclipse_state, output_writer, deck, linsolver, gravity));
+        pimpl_.reset(new Impl(param, grid, geo, props, polymer_props, rock_comp_props, eclipse_state, output_writer, deck, linsolver));
     }
 
 
@@ -176,8 +171,7 @@ namespace Opm
                                                           std::shared_ptr<EclipseState> eclipse_state,
                                                           EclipseWriter& output_writer,
                                                           Opm::DeckConstPtr& deck,
-                         			                      NewtonIterationBlackoilInterface& linsolver,
-                                    		              const double* gravity)
+                         			                      NewtonIterationBlackoilInterface& linsolver)
         : grid_(grid),
           props_(props),
           polymer_props_(polymer_props),
@@ -186,7 +180,6 @@ namespace Opm
           output_writer_(output_writer),
           deck_(deck),
           linsolver_(linsolver),
-          gravity_(gravity),
           geo_(geo)
     {
         // For output.
@@ -233,7 +226,6 @@ namespace Opm
         }
         std::vector<double> initial_porevol = porevol;
 
-        std::vector<double> polymer_inflow_c(grid_.number_of_cells);
         // Main simulation loop.
         Opm::time::StopWatch solver_timer;
         double stime = 0.0;
@@ -245,22 +237,6 @@ namespace Opm
 
         //Main simulation loop.
         while (!timer.done()) {
-#if 0
-            double tot_injected[2] = { 0.0 };
-            double tot_produced[2] = { 0.0 };
-            Opm::Watercut watercut;
-            watercut.push(0.0, 0.0, 0.0);
-            std::vector<double> fractional_flows;
-            std::vector<double> well_resflows_phase;
-            if (wells_) {
-                well_resflows_phase.resize((wells_->number_of_phases)*(wells_->number_of_wells), 0.0);
-            }
-            std::fstream tstep_os;
-            if (output_) {
-                std::string filename = output_dir_ + "/step_timing.param";
-                tstep_os.open(filename.c_str(), std::fstream::out | std::fstream::app);
-            }
-#endif
             // Report timestep and (optionally) write state to disk.
 
             step_timer.start();
@@ -322,39 +298,6 @@ namespace Opm
                 initial_porevol = porevol;
                 computePorevolume(grid_, props_.porosity(), *rock_comp_props_, state.pressure(), porevol);
             }
-/*
-            double injected[2] = { 0.0 };
-            double produced[2] = { 0.0 };
-    		double polyinj = 0;
-    		double polyprod = 0;
-            Opm::computeInjectedProduced(props_, polymer_props_,
-                                         state,
-                                         transport_src, polymer_inflow_c, timer.currentStepLength(),
-                                         injected, produced,
-                                         polyinj, polyprod);
-            tot_injected[0] += injected[0];
-            tot_injected[1] += injected[1];
-            tot_produced[0] += produced[0];
-            tot_produced[1] += produced[1];
-            watercut.push(timer.simulationTimeElapsed() + timer.currentStepLength(),
-                          	  produced[0]/(produced[0] + produced[1]),
-                          	  tot_produced[0]/tot_porevol_init);
-            std::cout.precision(5);
-            const int width = 18;
-            std::cout << "\nMass balance report.\n";
-            std::cout << "    Injected reservoir volumes:      "
-                      << std::setw(width) << injected[0]
-                      << std::setw(width) << injected[1] << std::endl;
-            std::cout << "    Produced reservoir volumes:      "
-                      << std::setw(width) << produced[0]
-                      << std::setw(width) << produced[1] << std::endl;
-            std::cout << "    Total inj reservoir volumes:     "
-                      << std::setw(width) << tot_injected[0]
-                      << std::setw(width) << tot_injected[1] << std::endl;
-            std::cout << "    Total prod reservoir volumes:    "
-                      << std::setw(width) << tot_produced[0]
-                      << std::setw(width) << tot_produced[1] << std::endl;
-*/
             if (output_) {
                 SimulatorReport step_report;
                 step_report.pressure_time = st;
@@ -455,19 +398,6 @@ namespace Opm
             }
         }
 
-#if 0    
-        static void outputWaterCut(const Opm::Watercut& watercut,
-                    	            const std::string& output_dir)
-        {
-            // Write water cut curve.
-            std::string fname = output_dir  + "/watercut.txt";
-            std::ofstream os(fname.c_str());
-            if (!os) {
-                OPM_THROW(std::runtime_error, "Failed to open " << fname);
-            }
-            watercut.write(os);
-        }
-#endif
     }
 
 } // namespace Opm

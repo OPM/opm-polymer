@@ -354,7 +354,7 @@ namespace Opm {
                 const ADB mu = fluidViscosity(canonicalPhaseIdx, phasePressure, state.temperature, state.rs, state.rv, cond, cells_);
                 const ADB cmax = ADB::constant(cmax_, state.concentration.blockPattern());
                 const ADB mc = computeMc(state);
-                const ADB krw_eff = polymer_props_ad_.effectiveRelPerm(state.concentration, cmax, kr, state.saturation[actph]);
+                const ADB krw_eff = polymer_props_ad_.effectiveRelPerm(state.concentration, cmax, kr);
                 const ADB inv_wat_eff_visc = polymer_props_ad_.effectiveInvWaterVisc(state.concentration, mu.value().data());
                 // Reduce mobility of water phase by relperm reduction and effective viscosity increase.
                 rq_[actph].mob = tr_mult * krw_eff * inv_wat_eff_visc;
@@ -388,7 +388,7 @@ namespace Opm {
                                                      int nw) const
     {
         // Do the global reductions
-#if HAVE_MPI
+#if 0// HAVE_MPI
         if ( linsolver_.parallelInformation().type() == typeid(ParallelISTLInformation) )
         {
             const ParallelISTLInformation& info =
@@ -438,9 +438,9 @@ namespace Opm {
         {
             for ( int idx=0; idx<MaxNumPhases+1; ++idx )
             {
-                if (idx == MaxNumPhases || active_[idx]) { // Dealing with polymer *or* an active phase.
+                if ((idx == MaxNumPhases && has_polymer_) || active_[idx]) { // Dealing with polymer *or* an active phase.
                     B_avg[idx] = B.col(idx).sum()/nc;
-                    maxCoeff[idx]=tempV.col(idx).maxCoeff();
+                    maxCoeff[idx] = tempV.col(idx).maxCoeff();
                     R_sum[idx] = R.col(idx).sum();
                 }
                 else
@@ -453,11 +453,6 @@ namespace Opm {
                         maxNormWell[idx]  = std::max(maxNormWell[idx], std::abs(residual_.well_flux_eq.value()[nw*idx + w]));
                     }
                 }
-            }
-            if (has_polymer_) {
-                B_avg[MaxNumPhases] = B.col(MaxNumPhases).sum()/nc;
-                maxCoeff[MaxNumPhases]=tempV.col(MaxNumPhases).maxCoeff();
-                R_sum[MaxNumPhases] = R.col(MaxNumPhases).sum();
             }
             // Compute total pore volume
             return geo_.poreVolume().sum();

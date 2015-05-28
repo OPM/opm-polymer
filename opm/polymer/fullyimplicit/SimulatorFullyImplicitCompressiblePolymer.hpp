@@ -83,8 +83,7 @@ namespace Opm
                                                   std::shared_ptr<EclipseState> eclipse_state,
                                                   EclipseWriter& eclipse_writer,
                                                   Opm::DeckConstPtr& deck,
-                                       			  NewtonIterationBlackoilInterface& linsolver,
-                                       			  const double* gravity);
+                                       			  NewtonIterationBlackoilInterface& linsolver);
 
         /// Run the simulation.
         /// This will run succesive timesteps until timer.done() is true. It will
