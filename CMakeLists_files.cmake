@@ -37,7 +37,6 @@ list (APPEND MAIN_SOURCE_FILES
 	opm/polymer/TransportSolverTwophasePolymer.cpp
     opm/polymer/fullyimplicit/PolymerPropsAd.cpp
     opm/polymer/fullyimplicit/FullyImplicitCompressiblePolymerSolver.cpp
-    opm/polymer/fullyimplicit/SimulatorFullyImplicitCompressiblePolymer.cpp
 	)
 
 # originally generated with the command:
@@ -90,6 +89,7 @@ list (APPEND PUBLIC_HEADER_FILES
     opm/polymer/fullyimplicit/PolymerPropsAd.hpp
     opm/polymer/fullyimplicit/FullyImplicitCompressiblePolymerSolver.hpp
     opm/polymer/fullyimplicit/SimulatorFullyImplicitCompressiblePolymer.hpp
+    opm/polymer/fullyimplicit/SimulatorFullyImplicitCompressiblePolymer_impl.hpp
     opm/polymer/fullyimplicit/FullyImplicitBlackoilPolymerSolver.hpp
     opm/polymer/fullyimplicit/FullyImplicitBlackoilPolymerSolver_impl.hpp
     opm/polymer/fullyimplicit/BlackoilPolymerModel.hpp
