@@ -1,6 +1,6 @@
 Module: opm-polymer
 Description: OPM module for polymer simulations
-Version: 1.0.1
-Label: 2013.10
+Version: 2015.10
+Label: 2015.10
 Maintainer: atgeirr@sintef.no
 Depends: opm-common opm-autodiff
