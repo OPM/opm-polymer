@@ -2,7 +2,7 @@
 # spec file for package opm-polymer
 #
 
-%define tag rc1
+%define tag rc2
 
 Name:           opm-polymer
 Version:        2015.10
