@@ -283,7 +283,8 @@ try
 
         WellState well_state;
         int step = 0;
-        Opm::TimeMapPtr timeMap(new Opm::TimeMap(deck));
+        Opm::ParserLogPtr parserLog(new Opm::ParserLog);
+        Opm::TimeMapPtr timeMap(new Opm::TimeMap(deck, parserLog));
         SimulatorTimer simtimer;
         simtimer.init(timeMap);
         // Check for WPOLYMER presence in last epoch to decide
